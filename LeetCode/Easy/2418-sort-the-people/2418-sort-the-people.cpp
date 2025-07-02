@@ -5,10 +5,11 @@ public:
             int maxIndex = i;
             for(int j = i+1; j < names.size(); j++){
                 if(heights[maxIndex] < heights[j]){
-                    swap(heights[maxIndex],heights[j]);
-                    swap(names[maxIndex],names[j]);
+                    maxIndex = j;
                 }
             }
+            swap(heights[maxIndex],heights[i]);
+            swap(names[maxIndex],names[i]);
         }
         return names;
     }
