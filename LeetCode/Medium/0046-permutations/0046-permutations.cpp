@@ -1,33 +1,20 @@
 class Solution {
 public:
-    bool duplicate(vector<int> output){
-        for(int i = 0; i < output.size() - 1; i++){
-            for(int j = i + 1; j < output.size(); j++){
-                if(output[i] == output[j]){
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-    void solve(vector<int> nums, vector<vector<int>>& ans, vector<int> output, int index){
+    void solve(vector<int> nums, vector<vector<int>>& ans, int index){
         if(index >= nums.size()){
-            if(nums.size() == output.size() && !duplicate(output))
-                ans.push_back(output);
+                ans.push_back(nums);
             return;
         }
-        for(int i = 0; i < nums.size(); i++){
-            output.push_back(nums[i]);
-            solve(nums, ans, output,index+1);
-            output.pop_back();
+        for(int i = index; i < nums.size(); i++){
+            swap(nums[i], nums[index]);
+            solve(nums, ans, index+1);
         }
-
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
         vector<int> output;
         int index = 0;
-        solve(nums, ans, output,index);
+        solve(nums, ans, index);
         return ans;
     }
 };
