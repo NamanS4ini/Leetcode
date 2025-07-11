@@ -8,10 +8,10 @@ Hello! I'm actively solving coding problems on [LeetCode](https://leetcode.com/n
 
 | Difficulty | Problems Solved |
 |------------|------------------|
-| 🟢 Easy     | 0               |
-| 🟡 Medium   | 0               |
-| 🔴 Hard     | 0               |
-| **✅ Total**   | 0               |
+| 🟢 Easy     | 83               |
+| 🟡 Medium   | 37               |
+| 🔴 Hard     | 1               |
+| **✅ Total**   | 121               |
 
 _Last updated: 2025-07-11_
 
