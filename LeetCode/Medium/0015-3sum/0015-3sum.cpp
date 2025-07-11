@@ -15,7 +15,6 @@ public:
                     left++;
                     while(nums[left] == nums[left - 1] && left < right)
                         left++;
-                    right--;
                 }
                 else if(nums[i] + nums[left] + nums[right] > 0){
                     right--;
