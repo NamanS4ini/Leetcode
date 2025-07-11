@@ -12,21 +12,20 @@ const username = "namansaini";
   const hard = data.hardSolved;
   const total = data.totalSolved;
 
+  const today = new Date();
+  const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+
   const readmePath = "./README.md";
   let readme = fs.readFileSync(readmePath, "utf-8");
 
-  // Replace problem counts
+  // Replace stats
   readme = readme.replace(/🟢 Easy\s+\|\s+\d+/, `🟢 Easy     | ${easy}`);
   readme = readme.replace(/🟡 Medium\s+\|\s+\d+/, `🟡 Medium   | ${medium}`);
   readme = readme.replace(/🔴 Hard\s+\|\s+\d+/, `🔴 Hard     | ${hard}`);
   readme = readme.replace(/\*\*✅ Total\*\*\s+\|\s+\d+/, `**✅ Total**   | ${total}`);
 
-  // Replace last updated timestampconst today = new Date();
-const today = new Date();
-const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-
-readme = readme.replace(/<!-- LAST_UPDATED -->/, formattedDate);
-
+  // Replace last updated date after the marker
+  readme = readme.replace(/<!--LAST_UPDATED-->[\d\/\-]+/, `<!--LAST_UPDATED-->${formattedDate}`);
 
   fs.writeFileSync(readmePath, readme);
 })();
