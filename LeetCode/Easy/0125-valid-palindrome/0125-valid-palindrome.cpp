@@ -1,27 +1,15 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-    int len = s.length();
-    for(int i = 0; i < len; i++){
-        if (int(s[i])>64 && int(s[i])< 91)
-        {
-            s.at(i) = char(int(s[i])+32);
+        string ans;
+        for(char c : s){
+            if(isalnum(c))
+                ans+= tolower(c);
         }
-        else if((int(s[i])>96 && int(s[i])< 123)|| (int(s[i])>47 && int(s[i])< 58)){
-            continue;
-
-        }
-        else{
-            s.replace(i, 1, "");
-            len = s.length();
-            i--;
-        }
-    }
-    cout << s;
         int left = 0;
-        int right = s.length() - 1;
+        int right = ans.length() - 1;
         while(left < right){
-            if(s[left] != s[right])
+            if(ans[left] != ans[right])
                 return false;
             left++;
             right--;
