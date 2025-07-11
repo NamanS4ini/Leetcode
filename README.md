@@ -1,30 +1,34 @@
 # 🧠 LeetCode Progress Tracker
 
-Hello! I'm actively solving coding problems on [LeetCode](https://leetcode.com/namansaini/) to improve my problem-solving skills and prepare for technical interviews.
+Hi there! I'm actively solving coding problems on [LeetCode](https://leetcode.com/namansaini/) to sharpen my problem-solving skills and prepare for technical interviews.
 
 ---
 
-## 📊 Current Stats
+## 📊 Current Progress
 
 | Difficulty | Problems Solved |
 |------------|------------------|
 | 🟢 Easy     | 83               |
 | 🟡 Medium   | 37               |
-| 🔴 Hard     | 1               |
-| **✅ Total**   | 121               |
+| 🔴 Hard     | 1                |
+| **✅ Total**   | 121              |
 
 _Last updated: <!--LAST_UPDATED-->11/07/2025_
 
 ---
 
-## 🔁 This file auto-updates daily
+## 🔄 Auto-Updated Daily
 
-Using GitHub Actions, this `README.md` is updated automatically with my latest stats from LeetCode.
+This `README.md` is automatically updated every day using a GitHub Actions workflow that fetches my latest LeetCode stats.
 
 ---
 
-## 🧩 Goal
+## 🎯 My 2025 Goal
 
-- 🎯 Solve at least **200 problems** by the end of the year.
-- 🧠 Focus on consistency over quantity.
-- 📝 Learn and write down patterns after solving each problem.
+- 🧩 Solve at least **200 problems** by the end of the year  
+- 📈 Build consistency and stay sharp  
+- 🧠 Focus on patterns and problem-solving strategies over raw count
+
+---
+
+_Thanks for checking out my progress!_
