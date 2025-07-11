@@ -1,7 +1,7 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 
-const username = "your-leetcode-username"; // 🔁 Replace this
+const username = "namansaini";
 
 (async () => {
   const res = await fetch(`https://leetcode-stats-api.herokuapp.com/${username}`);
