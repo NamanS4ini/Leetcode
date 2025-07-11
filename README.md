@@ -25,7 +25,7 @@ This `README.md` is automatically updated every day using a GitHub Actions workf
 
 ## 🎯 My 2025 Goal
 
-- 🧩 Solve at least **200 problems** by the end of the year  
+- 🧩 Solve at least **300 problems** by the end of the year  
 - 📈 Build consistency and stay sharp  
 - 🧠 Focus on patterns and problem-solving strategies over raw count
 
