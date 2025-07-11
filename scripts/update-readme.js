@@ -11,7 +11,6 @@ const username = "namansaini";
   const medium = data.mediumSolved;
   const hard = data.hardSolved;
   const total = data.totalSolved;
-  const today = new Date().toISOString().split("T")[0];
 
   const readmePath = "./README.md";
   let readme = fs.readFileSync(readmePath, "utf-8");
