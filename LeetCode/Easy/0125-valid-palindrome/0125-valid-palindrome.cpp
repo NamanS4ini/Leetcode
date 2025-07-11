@@ -7,8 +7,9 @@ public:
         {
             s.at(i) = char(int(s[i])+32);
         }
-        else if(int(s[i])>96 && int(s[i])< 121){
+        else if((int(s[i])>96 && int(s[i])< 123)|| (int(s[i])>47 && int(s[i])< 58)){
             continue;
+
         }
         else{
             s.replace(i, 1, "");
