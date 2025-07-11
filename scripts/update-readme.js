@@ -22,8 +22,11 @@ const username = "namansaini";
   readme = readme.replace(/🔴 Hard\s+\|\s+\d+/, `🔴 Hard     | ${hard}`);
   readme = readme.replace(/\*\*✅ Total\*\*\s+\|\s+\d+/, `**✅ Total**   | ${total}`);
 
-  // Replace last updated timestamp
-  readme = readme.replace(/<!-- LAST_UPDATED -->/, today);
+  // Replace last updated timestampconst today = new Date();
+const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+
+readme = readme.replace(/<!-- LAST_UPDATED -->/, formattedDate);
+
 
   fs.writeFileSync(readmePath, readme);
 })();
