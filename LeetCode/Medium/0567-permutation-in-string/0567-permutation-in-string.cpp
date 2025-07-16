@@ -5,8 +5,15 @@ public:
         if (s1.length() > s2.length())
             return false;
         unordered_map<char, int> s1Freq;
+        unordered_map<char, int> s2Freq;
         for (char c : s1) {
             s1Freq[c]++;
+        }
+        for (char c : s2) {
+            s2Freq[c]++;
+        }
+        if(s1Freq == s2Freq){
+            return true;
         }
         unordered_map<char, int> purmFreq;
         for (int i = 0; i < s2.length(); i++) {
