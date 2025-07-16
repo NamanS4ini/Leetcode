@@ -21,7 +21,6 @@ public:
                 int match = 0;
                 for (auto c : purmFreq) {
                     if (c.second == s1Freq[c.first]) {
-                        // cout << c.first << " " << c.second << endl;
                         match+= c.second;
                     }
                 }
