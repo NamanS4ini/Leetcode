@@ -15,10 +15,8 @@ public:
             }
         }
         int cows = 0;
-        // cout << secret << " " << guess;
         for(int i = 0; i < secret.length(); i++){
             if(wrong.find(secret[i]) != wrong.end() && wrong[secret[i]] > 0){
-                cout << secret[i] << endl;
                 cows++;
                 wrong[secret[i]]--;
             }
