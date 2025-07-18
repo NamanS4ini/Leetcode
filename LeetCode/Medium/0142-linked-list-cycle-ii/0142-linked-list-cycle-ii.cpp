@@ -10,14 +10,12 @@ class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
         unordered_set<ListNode*> seen;
-        ListNode* temp = head;
-        // ListNode* cycle = nullptr;
-        while(temp != nullptr){
-            if(seen.find(temp) != seen.end()){
-                return temp;
+        while(head != nullptr){
+            if(seen.find(head) != seen.end()){
+                return head;
             }
-            seen.insert(temp);
-            temp = temp -> next;
+            seen.insert(head);
+            head = head -> next;
         }
         return nullptr;
     }
