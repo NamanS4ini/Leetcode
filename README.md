@@ -9,11 +9,11 @@ Hi there! I'm actively solving coding problems on [LeetCode](https://leetcode.co
 | Difficulty | Problems Solved |
 |------------|------------------|
 | 🟢 Easy     | 90               |
-| 🟡 Medium   | 47               |
+| 🟡 Medium   | 50               |
 | 🔴 Hard     | 1                |
-| **✅ Total**   | 138              |
+| **✅ Total**   | 141              |
 
-_Last updated: <!--LAST_UPDATED-->17/07/2025_
+_Last updated: <!--LAST_UPDATED-->18/07/2025_
 
 ---
 
