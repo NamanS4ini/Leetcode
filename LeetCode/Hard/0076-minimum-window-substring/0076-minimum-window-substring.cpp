@@ -33,9 +33,9 @@ public:
                             left++;
                         }
                     }
-                    if (minStringLen > right - left + 1) {
+                    if (minStringLen > right - (left - 1) + 1) {
                         minString = s.substr(left - 1, right - left + 2);
-                        minStringLen = right - left + 1;
+                        minStringLen = right - (left - 1) + 1;
                     }
                 }
             }
