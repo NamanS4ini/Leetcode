@@ -28,7 +28,6 @@ public:
         }
         slow -> next = prev;
         while(prev != nullptr){
-            cout << head -> val << " " << prev -> val << endl;
             if(head -> val != prev -> val){
                 return false;
             }
