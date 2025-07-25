@@ -20,14 +20,16 @@ public:
         Node* ans = new Node(-1);
         Node* dummy = ans;
         Node* temp = head;
-        while (head) {
-            ans->next = new Node(head->val);
+        while (temp) {
+            ans->next = new Node(temp->val);
             ans = ans->next;
-            head = head->next;
+            temp = temp->next;
         }
         ans = dummy->next;
         dummy = dummy->next;
+
         unordered_map<Node*, Node*> NtN;
+        temp = head;
         while (temp) {
             NtN[temp] = dummy;
             temp = temp->next;
