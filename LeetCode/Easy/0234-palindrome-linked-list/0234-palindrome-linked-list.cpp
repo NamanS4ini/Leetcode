@@ -11,18 +11,31 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int> arr;
-        while(head != nullptr){
-            arr.push_back(head -> val);
-            head = head -> next;
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast -> next != nullptr && fast -> next -> next != nullptr){
+            slow = slow->next;
+            fast = fast -> next -> next;
         }
-        int left = 0;
-        int right = arr.size() - 1;
-        while(left < right){
-            if(arr[left++] != arr[right--]){
+        ListNode* prev = nullptr;
+        ListNode* curr = slow->next;
+        ListNode* next = curr;
+        while(curr != nullptr){
+            next = curr->next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+        }
+        slow -> next = prev;
+        while(prev != nullptr){
+            cout << head -> val << " " << prev -> val << endl;
+            if(head -> val != prev -> val){
                 return false;
             }
+            head = head-> next;
+            prev = prev-> next;
         }
+        
         return true;
     }
 };
