@@ -19,22 +19,15 @@ public:
     Node* copyRandomList(Node* head) {
         Node* ans = new Node(-1);
         Node* dummy = ans;
-        Node* temp = head;
-        while (temp) {
-            ans->next = new Node(temp->val);
-            ans = ans->next;
-            temp = temp->next;
-        }
-        ans = dummy->next;
-        dummy = dummy->next;
-
         unordered_map<Node*, Node*> NtN;
-        temp = head;
-        while (temp) {
-            NtN[temp] = dummy;
-            temp = temp->next;
-            dummy = dummy->next;
+        while (head) {
+            ans->next = new Node(head->val);
+            ans = ans->next;
+            NtN[head] = ans;
+            head = head->next;
         }
+
+        ans = dummy->next;
         for(auto node: NtN){
             Node* originalNode = node.first;
             Node* copyNode = node.second;
