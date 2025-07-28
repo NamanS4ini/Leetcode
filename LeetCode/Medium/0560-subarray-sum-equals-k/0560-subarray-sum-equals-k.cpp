@@ -8,6 +8,7 @@ public:
             sum += nums[i];
             if (sum == k) {
                 count++;
+                count += sums[0];
             } else {
                 int diff = sum - k;
                 count += sums[diff];
