@@ -13,20 +13,20 @@ public:
                 right++;
             }
             else{
-                maxNum = max(maxNum, nums[right]);
-                freq[nums[left]]--;
                 freq[nums[right]]++;
-                ans.push_back(maxNum);
-                if(nums[left] == maxNum && freq[nums[left]] == 0){
+                maxNum = max(maxNum, nums[right]);
+                if(freq[maxNum] == 0){
                     maxNum = INT_MIN;
-                    for(int i = left+1; i <= right; i++){
+                    for(int i = left; i <= right; i++){
                         maxNum = max(maxNum, nums[i]);
                     }
                 }
-                left++;
-                right++;
+                ans.push_back(maxNum);
+                freq[nums[left++]]--;
+                    right++;
+
             }
         }
         return ans;
     }
-};
+}; 
