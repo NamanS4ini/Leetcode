@@ -1,48 +1,22 @@
 class Solution {
 public:
-    vector<int> nextSmaller(vector<int> arr, int size) {
-        stack<int> s;
-        s.push(-1);
-        vector<int> ans(size);
-        for (int i = size - 1; i >= 0; i--) {
-            while (s.top() != -1 && arr[s.top()] >= arr[i]) {
-                s.pop();
-            }
-            ans[i] = s.top();
-            s.push(i);
-        }
-        return ans;
-    }
-    vector<int> prevSmaller(vector<int> arr, int size) {
-        stack<int> s;
-        s.push(-1);
-        vector<int> ans(size);
-        for (int i = 0; i < size; i++) {
-            while (s.top() != -1 && arr[s.top()] >= arr[i]) {
-                s.pop();
-            }
-            ans[i] = s.top();
-            s.push(i);
-        }
-        return ans;
-    }
-
     int largestRectangleArea(vector<int>& heights) {
-        int size = heights.size();
-        vector<int> next(size);
-        vector<int> prev(size);
-        next = nextSmaller(heights, size);
-        prev = prevSmaller(heights, size);
         int maxArea = 0;
-
-        for (int i = 0; i < size; i++) {
-            int length = heights[i];
-            if (next[i] == -1) {
-                next[i] = size;
+        stack <pair<int, int>> s;
+        for (int i = 0; i < heights.size(); i++) {
+            int element = heights[i];
+            int startIndex = i;
+            while (!s.empty() && s.top().second > element) {
+                startIndex = s.top().first;
+                maxArea = max(maxArea, (i - s.top().first) * s.top().second);
+                s.pop();
             }
-            int width = next[i] - prev[i] - 1;
-            int area = length * width;
-            maxArea = max(area, maxArea);
+            s.push({startIndex, element});
+        }
+        while (!s.empty()) {
+            int currArea = (heights.size() - s.top().first) * s.top().second;
+            maxArea = max(maxArea, currArea);
+            s.pop();
         }
         return maxArea;
     }
