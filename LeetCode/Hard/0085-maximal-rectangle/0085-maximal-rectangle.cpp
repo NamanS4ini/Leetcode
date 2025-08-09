@@ -25,14 +25,8 @@ public:
         vector<int> histogram(matrix[0].size(),0);
         int maxArea = 0;
         for(int i = 0; i < matrix.size(); i++){
-            for(int j = 0; j < matrix[0].size(); j++){
-                if(matrix[i][j] == '0'){
-                    histogram[j] = 0;
-                }
-                else{
-                    histogram[j] += (matrix[i][j] - '0');
-                }
-            }
+            for(int j = 0; j < matrix[0].size(); j++)
+                matrix[i][j] == '0' ? histogram[j] = 0 : histogram[j] += (matrix[i][j] - '0');
             maxArea = max(maxArea, findHistMaxArea(histogram));
         }
         return maxArea;
