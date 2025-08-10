@@ -35,7 +35,6 @@ private:
             ans = ans->next;
             l2 = l2->next;
         }
-        cout << dummy -> next -> val << " ";
         return dummy->next;
     }
 public:
