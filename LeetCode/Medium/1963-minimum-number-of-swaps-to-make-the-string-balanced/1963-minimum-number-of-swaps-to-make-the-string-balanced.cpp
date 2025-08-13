@@ -1,28 +1,27 @@
 class Solution {
 public:
     int minSwaps(string s) {
-        int close = 0;
-        int open = 0;
+        stack<char> st;
         int swaps = 0;
+        int left = 0;
         int right = s.length() - 1;
-        for(int i = 0; i < right; i++){
-            char c = s[i];
-            if(c == '['){
-                open++;
-            }
+        while(left < right){
+            if(s[left] == '[')
+                st.push('[');
             else{
-                if(close + 1 <= open){
-                    close++;
-                }
+                if(!st.empty())
+                    st.pop();
                 else{
                     while(s[right] != '['){
                         right--;
                     }
-                    right--;
                     swaps++;
+                    right--;
+                    st.push('[');
                 }
             }
+            left++;
         }
-        return ceil(swaps/2.0);
+        return swaps;
     }
 };
