@@ -1,9 +1,6 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        if(s == "" || s.length() < t.length()){
-            return "";
-        }
         unordered_map<char, int> freq;
         int need = 0;
         for (char c : t) {
