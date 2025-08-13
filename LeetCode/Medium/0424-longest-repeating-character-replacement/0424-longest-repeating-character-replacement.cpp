@@ -3,25 +3,28 @@ public:
     int characterReplacement(string s, int k) {
         int left = 0;
         int right = 0;
-        unordered_map <char, int> freq;
-        int maxLength = 0;
-        freq[s[0]]++;
+        int maxLen = 1;
+            unordered_map<char, int> freq;
+            freq[s[0]]++;
         while(right < s.length()){
             int maxFreq = 0;
-            for(auto f: freq){
-                maxFreq = max(maxFreq, f.second);
+            for(auto c: freq){
+                if(c.second > maxFreq){
+                    maxFreq = c.second;
+                }
             }
-            int length = right - left + 1;
-            int replacement = length - maxFreq;
+            int replacement = (right - left + 1) - maxFreq;
             if(replacement <= k){
-                maxLength = max(maxLength, right - left + 1);
+                maxLen = max(maxLen, right - left + 1);
                 right++;
                 freq[s[right]]++;
             }
             else{
-                freq[s[left++]]--;
+                freq[s[left]]--;
+                left++;
             }
         }
-        return maxLength;
+        return maxLen;
+
     }
 };
