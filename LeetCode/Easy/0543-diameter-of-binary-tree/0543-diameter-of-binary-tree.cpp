@@ -10,19 +10,19 @@
  * };
  */
 class Solution {
-    pair <int, int> diameter(TreeNode* root){
+    int res;
+    int diameter(TreeNode* root){
         if(!root)
-            return {0,0};
-        pair<int, int> pLeft = diameter(root -> left);
-        pair<int, int> pRight = diameter(root -> right);
-        int hLeft = pLeft.first;
-        int hRight = pRight.first;
-        int hBoth = pLeft.second + pRight.second + 1;
-        return {max(hLeft, max(hRight, hBoth)), max(pLeft.second, pRight.second) + 1};
-
+            return 0;
+        int h1 = diameter(root->left);
+        int h2 = diameter(root->right);
+        res = max(res, h1 + h2);
+        return max(h1, h2) + 1;
     }
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        return max(diameter(root).first, diameter(root).second) - 1;
+        res = 0;
+        diameter(root);
+        return res;
     }
 };
