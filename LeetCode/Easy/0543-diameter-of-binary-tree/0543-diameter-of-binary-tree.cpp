@@ -13,10 +13,12 @@ class Solution {
     pair <int, int> diameter(TreeNode* root){
         if(!root)
             return {0,0};
-        pair<int, int> h1 = diameter(root -> left);
-        pair<int, int> h2 = diameter(root -> right);
-        int h3 = h1.second + h2.second + 1;
-        return {max(h1.first, max(h2.first, h3)), max(h1.second, h2.second) + 1};
+        pair<int, int> pLeft = diameter(root -> left);
+        pair<int, int> pRight = diameter(root -> right);
+        int hLeft = pLeft.first;
+        int hRight = pRight.first;
+        int hBoth = pLeft.second + pRight.second + 1;
+        return {max(hLeft, max(hRight, hBoth)), max(pLeft.second, pRight.second) + 1};
 
     }
 public:
