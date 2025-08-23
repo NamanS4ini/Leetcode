@@ -5,7 +5,7 @@ public:
         unordered_set<int> seen;
         int left = 0;
         int right = 0;
-        int currSum = 0;
+        long long currSum = 0;
         while (right < nums.size()) {
             if (right - left + 1 < k) {
                 if (seen.find(nums[right]) == seen.end()) {
