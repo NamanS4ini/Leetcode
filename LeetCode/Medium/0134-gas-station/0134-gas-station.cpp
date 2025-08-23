@@ -10,15 +10,18 @@ public:
         if (totalGas < totalCost) {
             return -1;
         }
-        int fuel = 0;
-        int start = 0;
-        for (int i = 0; i < gas.size(); i++) {
-            fuel += gas[i] - cost[i];
-            if(fuel < 0){
-                fuel = 0;
-                start = i + 1 >= gas.size() ? 0 : i + 1;
+        int index = 0;
+        int remainingGas = 0;
+        for(int i = 0; i < gas.size(); i++){
+            remainingGas += gas[i] - cost[i];
+            if(remainingGas >= 0 && index == -1){
+                index = i;
+            }
+            if(remainingGas < 0){
+                remainingGas = 0;
+                index = -1;
             }
         }
-        return start;
+        return index;
     }
 };
