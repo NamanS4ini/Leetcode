@@ -16,7 +16,7 @@ public:
             fuel += gas[i] - cost[i];
             if(fuel < 0){
                 fuel = 0;
-                start = i + 1;
+                start = i + 1 >= gas.size() ? 0 : i + 1;
             }
         }
         return start;
