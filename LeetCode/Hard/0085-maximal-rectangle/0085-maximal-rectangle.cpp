@@ -1,33 +1,43 @@
 class Solution {
-private:
-    int findHistMaxArea(vector<int> heights) {
+    int largestRectangleArea(vector<int>& heights) {
         int maxArea = 0;
         stack<pair<int, int>> s;
         for (int i = 0; i < heights.size(); i++) {
-            int element = heights[i];
-            int startIndex = i;
-            while (!s.empty() && s.top().second > element) {
-                startIndex = s.top().first;
-                maxArea = max(maxArea, (i - s.top().first) * s.top().second);
-                s.pop();
+            if (s.empty() || heights[i] > s.top().second) {
+                s.push({i, heights[i]});
+            } else {
+                int start = i;
+                while (!s.empty() && s.top().second > heights[i]) {
+                    start = s.top().first;
+                    int area = (i - start) * s.top().second;
+                    maxArea = max(maxArea, area);
+                    s.pop();
+                }
+                s.push({start, heights[i]});
             }
-            s.push({startIndex, element});
         }
         while (!s.empty()) {
-            int currArea = (heights.size() - s.top().first) * s.top().second;
-            maxArea = max(maxArea, currArea);
+            int area = (heights.size() - s.top().first) * s.top().second;
+            maxArea = max(maxArea, area);
             s.pop();
         }
         return maxArea;
     }
+
 public:
     int maximalRectangle(vector<vector<char>>& matrix) {
-        vector<int> histogram(matrix[0].size(),0);
         int maxArea = 0;
-        for(int i = 0; i < matrix.size(); i++){
-            for(int j = 0; j < matrix[0].size(); j++)
-                matrix[i][j] == '0' ? histogram[j] = 0 : histogram[j] += (matrix[i][j] - '0');
-            maxArea = max(maxArea, findHistMaxArea(histogram));
+        vector<int> height(matrix[0].size(), 0);
+        for (int i = 0; i < matrix.size(); i++) {
+            for (int j = 0; j < matrix[0].size(); j++) {
+                int val = matrix[i][j] - '0';
+                if (val) {
+                    height[j]++;
+                } else {
+                    height[j] = 0;
+                }
+            }
+            maxArea = max(maxArea, largestRectangleArea(height));
         }
         return maxArea;
     }
