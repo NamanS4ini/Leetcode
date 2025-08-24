@@ -3,26 +3,21 @@ public:
     int longestSubarray(vector<int>& nums) {
         int maxSub = 0;
         int left = 0;
-        unordered_map<int, int> freq;
+        int zeroes = 0;
         int right = 0;
         while (right < nums.size()) {
-            int val = nums[right];
-            freq[val]++;
-            if (freq[0] > 1 && left < right) {
-                while (freq[0] > 1) {
-                    freq[nums[left]]--;
+            if(nums[right] == 0)
+                zeroes++;
+            if(zeroes > 1){
+                while(zeroes > 1){
+                    if(nums[left] == 0)
+                        zeroes--;
                     left++;
                 }
-                right++;
-                if (left > right) {
-                    right = left;
-                }
-            } else {
-                maxSub = max(maxSub, freq[1]);
-                right++;
             }
+            maxSub = max(maxSub, right - left + 1 - zeroes);
+            right++;
         }
         return maxSub == nums.size() ? maxSub - 1: maxSub;
     }
 };
-auto init = atexit([]() { ofstream("display_runtime.txt") << "0"; });
