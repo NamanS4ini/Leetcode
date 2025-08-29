@@ -10,25 +10,22 @@
  * };
  */
 class Solution {
-    bool res =  false;
-    void solve(TreeNode* root, int targetSum, int curr){
+    bool sum(TreeNode* root, int currSum, int targetSum){
+        if(!root)
+            return false;
+
+        currSum += root -> val;
+
         if(!root -> left && !root -> right){
-            if(curr + root -> val == targetSum){
-                res = true;
-            }
-            return;
+            if(currSum == targetSum)
+                return true;
+            return false;
         }
-        if(root -> right)
-            solve(root -> right, targetSum, curr + root -> val);
-        if(root -> left)
-            solve(root -> left, targetSum, curr + root -> val);
+        
+        return sum(root ->left, currSum, targetSum) || sum(root-> right, currSum, targetSum);
     }
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
-        if(!root){
-            return false;
-        }
-        solve(root, targetSum, 0);
-        return res;
+        return sum(root, 0, targetSum);
     }
 };
