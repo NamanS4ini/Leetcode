@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-    void sum(TreeNode* root,vector<int> out, vector<vector<int>>& ans, int currSum, int targetSum){
+    void sum(TreeNode* root,vector<int>& out, vector<vector<int>>& ans, int currSum, int targetSum){
         if(!root)
             return;
 
@@ -21,10 +21,10 @@ class Solution {
             if(currSum == targetSum){
                 ans.push_back(out);
                 }
-                return;
         }
         sum(root ->left, out, ans, currSum, targetSum);
         sum(root-> right, out, ans, currSum, targetSum);
+        out.pop_back();
     }
 public:
     vector<vector<int>> pathSum(TreeNode* root, int targetSum) {
