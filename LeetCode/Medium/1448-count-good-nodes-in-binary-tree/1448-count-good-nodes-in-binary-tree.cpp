@@ -11,26 +11,20 @@
  */
 class Solution {
     int good = 0;
-    void solve(TreeNode* root, vector<int>& seen){
+    void solve(TreeNode* root, int maxi){
         if(!root)
             return;
-        for(int n: seen){
-            if(n > root -> val){
-                good--;
-                break;
-            }
+        if(maxi <= root->val){
+            maxi = root -> val;
+            good++;
         }
-        good++;
-        seen.push_back(root->val);
-        solve(root->left, seen);
-        solve(root->right, seen);
-        seen.pop_back();
+        solve(root->left, maxi);
+        solve(root->right, maxi);
     }
 public:
     int goodNodes(TreeNode* root) {
-        vector<int> seen;
-        solve(root, seen);
+        int maxi = INT_MIN;
+        solve(root, maxi);
         return good;
-
     }
 };
