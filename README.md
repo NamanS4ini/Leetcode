@@ -10,10 +10,10 @@ Hi there! I'm actively solving coding problems on [LeetCode](https://leetcode.co
 |------------|------------------|
 | 🟢 Easy     | 119               |
 | 🟡 Medium   | 99               |
-| 🔴 Hard     | 9                |
-| **✅ Total**   | 227              |
+| 🔴 Hard     | 10                |
+| **✅ Total**   | 228              |
 
-_Last updated: <!--LAST_UPDATED-->05/09/2025_
+_Last updated: <!--LAST_UPDATED-->06/09/2025_
 
 ---
 
