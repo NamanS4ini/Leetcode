@@ -13,7 +13,7 @@ Hi there! I'm actively solving coding problems on [LeetCode](https://leetcode.co
 | 🔴 Hard     | 10                |
 | **✅ Total**   | 235              |
 
-_Last updated: <!--LAST_UPDATED-->12/09/2025_
+_Last updated: <!--LAST_UPDATED-->13/09/2025_
 
 ---
 
