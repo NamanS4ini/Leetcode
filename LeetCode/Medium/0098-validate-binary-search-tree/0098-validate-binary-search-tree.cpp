@@ -10,21 +10,15 @@
  * };
  */
 class Solution {
-    void inOrder(TreeNode* root, vector<int>& ans){
+    bool valid(TreeNode* root, long long mini, long long maxi){
         if(!root)
-            return;
-        inOrder(root->left, ans);
-        ans.push_back(root -> val);
-        inOrder(root->right, ans);
+            return true;
+        if(root -> val <= mini || root -> val >= maxi)
+            return false;
+        return valid(root -> left, mini, root -> val) && valid(root -> right, root -> val, maxi);
     }
 public:
     bool isValidBST(TreeNode* root) {
-        vector<int> ans;
-        inOrder(root, ans);
-        for(int i = 1; i < ans.size(); i++){
-            if(ans[i] <= ans[i-1])
-                return false;
-        }
-        return true;
+        return valid(root, LLONG_MIN, LLONG_MAX);
     }
 };
