@@ -16,15 +16,8 @@ class Spreadsheet:
         formula = formula[1:]
         val1, val2 = formula.split("+")
         print(val1.isnumeric())
-        if(val1.isnumeric()):
-            val1 = int(val1)
-        else:
-            val1 = self.sheet[val1]
-        
-        if(val2.isnumeric()):
-            val2 = int(val2)
-        else:
-            val2 = self.sheet[val2]
+        val1 = int(val1) if val1.isnumeric() else self.sheet[val1]
+        val2 = int(val2) if val2.isnumeric() else self.sheet[val2]
         return val1 + val2
 
 
