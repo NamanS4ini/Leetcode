@@ -16,7 +16,6 @@ class Spreadsheet:
         formula = formula[1:]
         val1, val2 = formula.split("+")
         print(val1.isnumeric())
-        # val1 = val1.isnumeric() if int(val1) else self.sheet[val1]
         if(val1.isnumeric()):
             val1 = int(val1)
         else:
