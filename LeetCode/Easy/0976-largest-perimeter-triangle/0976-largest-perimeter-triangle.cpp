@@ -8,8 +8,7 @@ public:
             int s2 = nums[i-1];
             int s3 = nums[i-2];
             if (s1 + s2 > s3 && s2 + s3 > s1 && s1 + s3 > s2) {
-                maxPara = s1 + s2 + s3;
-                break;
+                maxPara = max(maxPara, s1 + s2 + s3);
             }
         }
         return maxPara;
