@@ -8,12 +8,12 @@ Hi there! I'm actively solving coding problems on [LeetCode](https://leetcode.co
 
 | Difficulty | Problems Solved |
 |------------|------------------|
-| 🟢 Easy     | 127               |
+| 🟢 Easy     | 129               |
 | 🟡 Medium   | 107               |
 | 🔴 Hard     | 10                |
-| **✅ Total**   | 244              |
+| **✅ Total**   | 246              |
 
-_Last updated: <!--LAST_UPDATED-->27/09/2025_
+_Last updated: <!--LAST_UPDATED-->28/09/2025_
 
 ---
 
