@@ -20,8 +20,6 @@ public:
         for(int i = size/2; i >= 0; i--){
             heapify(nums, size, i);
         }
-        for(int num: nums)
-            cout << num;
         for(int i = nums.size() - 1; i > 0; i--){
             swap(nums[0], nums[i]);
             heapify(nums, --size, 0);
