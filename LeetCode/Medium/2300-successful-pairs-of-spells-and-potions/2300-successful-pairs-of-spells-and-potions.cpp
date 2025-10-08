@@ -6,11 +6,9 @@ public:
         for(int spell: spells){
             int left = 0;
             int right = potions.size() - 1;
-            int mid;
             while(left <= right){
-                mid = (right + left)/2;
-                long s = long(spell) * potions[mid];
-                if(s >= success)
+                int mid = (right + left)/2;
+                if(long(spell) * potions[mid] >= success)
                     left = mid + 1;
                 else
                     right = mid - 1;
