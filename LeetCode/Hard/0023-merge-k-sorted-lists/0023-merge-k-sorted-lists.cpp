@@ -12,8 +12,8 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         priority_queue<ListNode*, vector<ListNode*>, compare> pq;
-        for(auto list: lists){
-            if(list)
+        for (auto list : lists) {
+            if (list)
                 pq.push(list);
         }
         ListNode* dummy = new ListNode(-1);
@@ -29,7 +29,7 @@ public:
         }
         return dummy->next;
     }
-    struct compare{
+    struct compare {
         bool operator()(ListNode* l1, ListNode* l2) {
             return l1->val > l2->val;
         }
