@@ -9,36 +9,29 @@
  * };
  */
 class Solution {
-private:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        if(!list1){
-            return list2;
-        }
-        if(!list2){
-            return list1;
-        }
-        ListNode* head = new ListNode();
-        ListNode* dummy = head;
-        while(list1 && list2){
-            if(list1-> val < list2 -> val){
-                head-> next = list1;
-                list1 = list1 -> next;
-            }
-            else{
-                head-> next = list2;
-                list2 = list2 -> next;
-            }
-            head = head->next;
-        }
-        head-> next = list1 ? list1 : list2;
-        return dummy -> next;
-    }
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        ListNode* head = nullptr;
-        for(int i = 0; i < lists.size(); i++){
-            head = mergeTwoLists(head, lists[i]);
+        priority_queue<ListNode*, vector<ListNode*>, compare> pq;
+        for(auto list: lists){
+            if(list)
+                pq.push(list);
         }
-        return head;
+        ListNode* dummy = new ListNode(-1);
+        ListNode* next = dummy;
+        while (pq.size()) {
+            ListNode* l = pq.top();
+            pq.pop();
+            next->next = l;
+            next = next->next;
+            if (l && l->next) {
+                pq.push(l->next);
+            }
+        }
+        return dummy->next;
     }
+    struct compare{
+        bool operator()(ListNode* l1, ListNode* l2) {
+            return l1->val > l2->val;
+        }
+    };
 };
