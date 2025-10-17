@@ -1,42 +1,28 @@
 class Solution {
 public:
     int leastInterval(vector<char>& tasks, int n) {
-        vector<int> timeout(26, 0);
         vector<int> freq(26, 0);
         for (char c : tasks) {
             freq[c - 'A']++;
         }
-        priority_queue<pair<int, char>> pq;
+        priority_queue<int> pq;
         for (int i = 0; i < 26; i++) {
             if (freq[i] > 0)
-                pq.push({freq[i], static_cast<char>(i + 'A')});
+                pq.push(freq[i]);
         }
         int time = 0;
-        while (pq.size()) {
-            pair<int, char> p;
+        queue<pair<int, int>> q;
+        while (pq.size() || q.size()) {
             time++;
-            vector<pair<int, char>> temp;
-            while (pq.size()) {
-                p = pq.top();
-                if (timeout[p.second - 'A'] == 0) {
-                    pq.pop();
-                    timeout[p.second - 'A'] = n + 1;
-                    if (p.first - 1 > 0)
-                        pq.push({p.first - 1, p.second});
-                    break;
-                }
-                else{
-                    temp.push_back(p);
-                    pq.pop();
-                }
+            if (pq.size()) {
+                int p = pq.top();
+                pq.pop();
+                if (p - 1 > 0)
+                    q.push({time + n, p - 1});
             }
-            while(temp.size()){
-                pq.push(temp[temp.size() - 1]);
-                temp.pop_back();
-            }
-            for (int i = 0; i < 26; i++) {
-                if (timeout[i] != 0)
-                    timeout[i]--;
+            if (q.size() && q.front().first <= time) {
+                pq.push(q.front().second);
+                q.pop();
             }
         }
 
