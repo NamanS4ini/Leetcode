@@ -19,7 +19,7 @@ public:
                 pq.push(s.top());
                 s.pop();
             }
-        }
+        } 
         vector<int> ans;
         int size = pq.size() < 10 ? pq.size() : 10;
         for (int i = 0; i < size; i++) {
