@@ -1,7 +1,7 @@
 class Twitter {
     int time = 0;
     unordered_map<int, stack<pair<int, int>>> Id2Post;
-    unordered_map<int, vector<int>> Id2Follow;
+    unordered_map<int, set<int>> Id2Follow;
 
 public:
     void postTweet(int userId, int tweetId) {
@@ -11,8 +11,8 @@ public:
 
     vector<int> getNewsFeed(int userId) {
         priority_queue<pair<int, int>> pq;
-        vector<int> followList = Id2Follow[userId];
-        followList.push_back(userId);
+        set<int> followList = Id2Follow[userId];
+        followList.insert(userId);
         for (int follow : followList) {
             stack<pair<int, int>> s = Id2Post[follow];
             while (!s.empty()) {
@@ -30,20 +30,12 @@ public:
     }
 
     void follow(int followerId, int followeeId) {
-        vector<int> followList = Id2Follow[followerId];
-        auto it = find(followList.begin(), followList.end(), followeeId);
-        if (followerId != followeeId && it == followList.end())
-            Id2Follow[followerId].push_back(followeeId);
+        if (followerId != followeeId)
+            Id2Follow[followerId].insert(followeeId);
     }
 
     void unfollow(int followerId, int followeeId) {
-        if (followerId == followeeId)
-            return;
-        vector<int> followList = Id2Follow[followerId];
-        auto it = find(followList.begin(), followList.end(), followeeId);
-        if (it != followList.end())
-            followList.erase(it);
-        Id2Follow[followerId] = followList;
+        Id2Follow[followerId].erase(followeeId);
     }
 };
 
