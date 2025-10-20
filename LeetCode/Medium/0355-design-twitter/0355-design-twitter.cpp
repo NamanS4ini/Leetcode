@@ -1,7 +1,7 @@
 class Twitter {
     int time = 0;
     unordered_map<int, stack<pair<int, int>>> Id2Post;
-    unordered_map<int, set<int>> Id2Follow;
+    unordered_map<int, unordered_set<int>> Id2Follow;
 
 public:
     void postTweet(int userId, int tweetId) {
@@ -11,7 +11,7 @@ public:
 
     vector<int> getNewsFeed(int userId) {
         priority_queue<pair<int, int>> pq;
-        set<int> followList = Id2Follow[userId];
+        unordered_set<int> followList = Id2Follow[userId];
         followList.insert(userId);
         for (int follow : followList) {
             stack<pair<int, int>> s = Id2Post[follow];
