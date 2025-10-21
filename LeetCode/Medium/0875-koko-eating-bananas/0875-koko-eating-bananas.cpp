@@ -1,7 +1,6 @@
 class Solution {
     bool canEat(int eat, vector<int> piles, int h) {
         int time = 0;
-        cout << eat << " ";
         for (int pile : piles) {
             int currTime = pile % eat == 0 ? pile / eat : pile / eat + 1;
             time += currTime ? currTime : 1;
