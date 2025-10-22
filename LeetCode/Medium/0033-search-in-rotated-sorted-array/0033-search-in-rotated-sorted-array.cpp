@@ -3,20 +3,15 @@ public:
     int search(vector<int>& nums, int target) {
         int low = 0;
         int high = nums.size() - 1;
-        int startIdx = -1;
-        while(high >= low){
-            int mid = (low + high)/2;
-            int right = (mid + 1) % nums.size();
-            if(nums[mid] > nums[right]){
-                startIdx = mid + 1;
-                break;    
-            }
-            if(nums[mid] < nums[nums.size() - 1])
-                high = mid - 1;
-            else
+        while(high > low){
+            int mid = (high + low)/2;
+            if(nums[mid] > nums[high])
                 low = mid + 1;
+            else
+                high = mid;
         }
-        startIdx = startIdx == -1 ? 0 : startIdx;
+        int startIdx = low;
+        cout << low;
         low = 0;
         high = nums.size() - 1;
         while(low <= high){
