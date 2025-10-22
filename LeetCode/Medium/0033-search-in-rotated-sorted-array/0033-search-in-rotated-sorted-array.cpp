@@ -11,7 +11,6 @@ public:
                 high = mid;
         }
         int startIdx = low;
-        cout << low;
         low = 0;
         high = nums.size() - 1;
         while(low <= high){
