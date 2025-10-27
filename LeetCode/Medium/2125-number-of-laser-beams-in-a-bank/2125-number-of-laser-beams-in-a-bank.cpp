@@ -9,20 +9,17 @@ class Solution {
     }
 public:
     int numberOfBeams(vector<string>& bank) {
-        int totalLaser = 0;
-        for(int i = 0; i < bank.size() - 1; i++){
-            int laserRi = countLaser(bank[i]);
-            if(!laserRi)
+        int prevRowCount = 0;
+        int total = 0;
+
+        for (const std::string& row : bank) {
+            int curRowCount = countLaser(row);
+            if (curRowCount == 0)
                 continue;
-            int j = i+1;
-            while(j < bank.size() && !countLaser(bank[j])){
-                j++;
-            }
-            if(j < bank.size()){
-                int laserRj = countLaser(bank[j]);
-                totalLaser += laserRi * laserRj;
-            }
+
+            total += curRowCount * prevRowCount;
+            prevRowCount = curRowCount;
         }
-        return totalLaser;
+        return total;
     }
 };
