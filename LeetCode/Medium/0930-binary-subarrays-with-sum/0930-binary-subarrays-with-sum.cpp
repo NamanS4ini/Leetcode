@@ -1,16 +1,13 @@
 class Solution {
 public:
-    int numSubarraysWithSum(vector<int>& nums, int k) {
-    unordered_map<int, int> freq;
-        freq[0]++;
-        int prefix = 0;
-        int total = 0;
-        for(int i = 0; i < nums.size(); i++){
-            prefix += nums[i];
-            int diff = prefix - k;
-            total += freq[diff];
-            freq[prefix]++;
+        int numSubarraysWithSum(vector<int>& A, int S) {
+        unordered_map<int, int> c({{0, 1}});
+        int psum = 0, res = 0;
+        for (int i : A) {
+            psum += i;
+            res += c[psum - S];
+            c[psum]++;
         }
-        return total;
+        return res;
     }
 };
