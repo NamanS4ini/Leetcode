@@ -36,8 +36,6 @@ public:
         for(int i = 0; i < nums.size(); i++){
             if(nums[i] == 0){
                 vector<int> leftArr = process(nums, i, true);
-                for(int num: leftArr)
-                    cout << num;
                 cout << endl;
                 if(checkZero(leftArr))
                     ans++;
