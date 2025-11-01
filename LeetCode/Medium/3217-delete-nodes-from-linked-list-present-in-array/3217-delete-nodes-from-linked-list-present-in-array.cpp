@@ -14,12 +14,12 @@ public:
         ListNode* dummy = NULL;
         ListNode* prev = NULL;
 
-        unordered_set<int> inArr;
+        unordered_map<int, bool> inArr;
         for(int num: nums){
-            inArr.insert(num);
+            inArr[num] = true;
         }
         while(head){
-            if(inArr.find(head->val) == inArr.end()){
+            if(!inArr[head->val]){
                 if(prev){
                     prev -> next = head;
                 }
