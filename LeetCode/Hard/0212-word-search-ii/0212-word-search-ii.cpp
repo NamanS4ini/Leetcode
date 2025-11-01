@@ -6,7 +6,6 @@ class TrieNode{
 
 class Solution {
     vector<string> res;
-    vector<vector<int>> visited;
     unordered_set<string> done;
     TrieNode* node = new TrieNode();
     void insert(string word){
@@ -20,10 +19,10 @@ class Solution {
     }
 
     void findWord(vector<vector<char>>& board, int row, int col, TrieNode* node, string s){
-        if(row >= board.size() || col >= board[0].size() || row < 0 || col < 0 || !node->next[board[row][col]-'a'] || visited[row][col])
+        if(row >= board.size() || col >= board[0].size() || row < 0 || col < 0 || board[row][col] == ' ' || !node->next[board[row][col]-'a'])
             return;
-        visited[row][col] = 1;
         char c = board[row][col];
+        board[row][col] = ' ';
         s.push_back(c);
         node = node->next[c-'a'];
         if(node->terminal && done.find(s) == done.end()){
@@ -34,12 +33,11 @@ class Solution {
         findWord(board, row - 1, col, node, s);
         findWord(board, row, col + 1, node, s);
         findWord(board, row, col - 1, node, s);
-        visited[row][col] = 0;
+        board[row][col] = c;
     }
 
 public:
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
-        visited = vector<vector<int>>(board.size(), vector<int>(board[0].size(),0));
         for(string word: words){
             insert(word);
         }
