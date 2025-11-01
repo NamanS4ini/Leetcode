@@ -5,8 +5,7 @@ class TrieNode{
 };
 
 class Solution {
-    vector<string> res;
-    unordered_set<string> done;
+    unordered_set<string> res;
     TrieNode* node = new TrieNode();
     void insert(string word){
         TrieNode* node = this->node;
@@ -25,9 +24,8 @@ class Solution {
         board[row][col] = ' ';
         s.push_back(c);
         node = node->next[c-'a'];
-        if(node->terminal && done.find(s) == done.end()){
-            done.insert(s);
-            res.push_back(s);
+        if(node->terminal){
+            res.insert(s);
         }
         findWord(board, row + 1, col, node, s);
         findWord(board, row - 1, col, node, s);
@@ -46,6 +44,6 @@ public:
                 findWord(board, i, j, node, "");
             }
         }
-        return res;
+        return vector<string>(res.begin(), res.end());
     }
 };
