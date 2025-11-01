@@ -11,20 +11,25 @@
 class Solution {
 public:
     ListNode* modifiedList(vector<int>& nums, ListNode* head) {
-        ListNode* dummy = new ListNode(-1);
-        ListNode* dummy2 = dummy;
+        ListNode* dummy = NULL;
+        ListNode* prev = NULL;
+
         unordered_set<int> inArr;
         for(int num: nums){
             inArr.insert(num);
         }
         while(head){
             if(inArr.find(head->val) == inArr.end()){
-                dummy -> next = head;
-                dummy = dummy -> next;
+                if(prev){
+                    prev -> next = head;
+                }
+                if(!dummy)
+                    dummy = head;
+                prev = head;
             }
             head = head-> next;
         }
-        dummy -> next = NULL;
-        return dummy2->next;
+        prev -> next = NULL;
+        return dummy;
     }
 };
