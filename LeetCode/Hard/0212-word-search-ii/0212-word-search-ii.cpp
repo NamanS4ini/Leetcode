@@ -1,0 +1,53 @@
+class TrieNode{
+    public:
+    TrieNode* next[26] = {};
+    bool terminal = false;
+};
+
+class Solution {
+    vector<string> res;
+    vector<vector<int>> visited;
+    unordered_set<string> done;
+    TrieNode* node = new TrieNode();
+    void insert(string word){
+        TrieNode* node = this->node;
+        for(char c: word){
+            if(!node->next[c-'a'])
+                node->next[c-'a'] = new TrieNode();
+            node = node -> next[c-'a'];
+        }
+        node->terminal = true;
+    }
+
+    void findWord(vector<vector<char>>& board, int row, int col, TrieNode* node, string s){
+        if(row >= board.size() || col >= board[0].size() || row < 0 || col < 0 || !node->next[board[row][col]-'a'] || visited[row][col])
+            return;
+        visited[row][col] = 1;
+        char c = board[row][col];
+        s.push_back(c);
+        node = node->next[c-'a'];
+        if(node->terminal && done.find(s) == done.end()){
+            done.insert(s);
+            res.push_back(s);
+        }
+        findWord(board, row + 1, col, node, s);
+        findWord(board, row - 1, col, node, s);
+        findWord(board, row, col + 1, node, s);
+        findWord(board, row, col - 1, node, s);
+        visited[row][col] = 0;
+    }
+
+public:
+    vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
+        visited = vector<vector<int>>(board.size(), vector<int>(board[0].size(),0));
+        for(string word: words){
+            insert(word);
+        }
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                findWord(board, i, j, node, "");
+            }
+        }
+        return res;
+    }
+};
