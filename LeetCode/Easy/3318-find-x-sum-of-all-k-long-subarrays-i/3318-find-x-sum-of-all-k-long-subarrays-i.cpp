@@ -7,16 +7,17 @@ public:
             for(int j = i; j < i+k; j++){
                 freq[nums[j]]++;
             }
-            priority_queue<pair<int, int>> pq;
+            priority_queue<pair<int, int>,vector<pair<int, int>>, greater<pair<int, int>>> pq;
             for(auto& p: freq){
                 pq.push({p.second, p.first});
+                if(pq.size() > x)
+                    pq.pop();
             }
             int sum = 0;
-            for(int j = 0; j < x && pq.size(); j++){
+            while(pq.size()){
                 pair<int,int> p = pq.top();
                 pq.pop();
                 sum += p.first * p.second;
-                // cout << p.first << "*" << p.second << " = " << sum << " ";
             }
             ans.push_back(sum);
         }
