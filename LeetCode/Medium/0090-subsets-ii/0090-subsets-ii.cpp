@@ -19,4 +19,4 @@ public:
         solve(nums, ans, output, 0);
         return vector<vector<int>>(ans.begin(), ans.end());
     }
-};
+}; 
