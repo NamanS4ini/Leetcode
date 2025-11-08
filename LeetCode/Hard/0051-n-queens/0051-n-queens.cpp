@@ -1,5 +1,5 @@
 class Solution {
-    bool isSfe(vector<string>& out, int row, int col){
+    bool isSafe(vector<string>& out, int row, int col){
         int n = out.size();
         for(int i = 0; i < n; i++){
             if(out[i][col] == 'Q')
@@ -55,7 +55,7 @@ class Solution {
             return;
         }
         for(int j = 0; j < n; j++){
-                if(isSfe(out, row, j)){
+                if(isSafe(out, row, j)){
                     queens++;
                     out[row][j] = 'Q';
                     solve(n, ans, out, row + 1, queens);
