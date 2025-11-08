@@ -46,17 +46,17 @@ class Solution {
         return true;
     }
 
-    void solve(int& n, vector<vector<string>>& ans, vector<string>& out,
+    void solve(int& n, int& count, vector<string>& out,
                int row, int col, int queens) {
         if (queens == n) {
-            ans.push_back(out);
+            count++;
             return;
         }
         for (int i = 0; i < n; i++) {
             if (isSfe(out, i, col)) {
                 queens++;
                 out[i][col] = 'Q';
-                solve(n, ans, out, i, col + 1, queens);
+                solve(n, count, out, i, col + 1, queens);
                 out[i][col] = '.';
                 queens--;
             }
@@ -65,9 +65,9 @@ class Solution {
 
 public:
     int totalNQueens(int n) {
-        vector<vector<string>> ans;
         vector<string> out(n, string(n, '.'));
-        solve(n, ans, out, 0, 0, 0);
-        return ans.size();
+        int count = 0;
+        solve(n, count, out, 0, 0, 0);
+        return count;
     }
 };
