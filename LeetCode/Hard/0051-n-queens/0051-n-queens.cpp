@@ -1,17 +1,17 @@
 class Solution {
-    bool isSfe(vector<string>& board, int row, int col){
-        int n = board.size();
+    bool isSfe(vector<string>& out, int row, int col){
+        int n = out.size();
         for(int i = 0; i < n; i++){
-            if(board[i][col] == 'Q')
+            if(out[i][col] == 'Q')
                 return false;
-            if(board[row][i] == 'Q')
+            if(out[row][i] == 'Q')
                 return false;
         }
         // UP-LEFT
         int i = row - 1;
         int j = col - 1;
         while(i >= 0 && j >= 0){
-            if(board[i][j] == 'Q')
+            if(out[i][j] == 'Q')
                 return false;
             i--;
             j--;
@@ -20,7 +20,7 @@ class Solution {
         i = row - 1;
         j = col + 1;
         while(i >= 0 && j < n){
-            if(board[i][j] == 'Q')
+            if(out[i][j] == 'Q')
                 return false;
             i--;
             j++;
@@ -29,7 +29,7 @@ class Solution {
         i = row + 1;
         j = col + 1;
         while(i < n && j < n){
-            if(board[i][j] == 'Q')
+            if(out[i][j] == 'Q')
                 return false;
             i++;
             j++;
@@ -38,7 +38,7 @@ class Solution {
         i = row + 1;
         j = col - 1;
         while(i < n && j >= 0){
-            if(board[i][j] == 'Q')
+            if(out[i][j] == 'Q')
                 return false;
             i++;
             j--;
@@ -46,28 +46,29 @@ class Solution {
         return true;
     }
 
-    void solve(int& n, vector<vector<string>>& ans, vector<string>& board, int row, int queens){
+    void solve(int& n, vector<vector<string>>& ans, vector<string>& out, int row, int col, int queens){
         if(queens == n){
-            ans.push_back(board);
+            ans.push_back(out);
             return;
         }
         for(int i = row; i < n; i++){
-            for(int j = 0; j < n; j++){
-                if(isSfe(board, i, j)){
+            for(int j = col; j < n; j++){
+                if(isSfe(out, i, j)){
                     queens++;
-                    board[i][j] = 'Q';
-                    solve(n, ans, board, i, queens);
-                    board[i][j] = '.';
+                    out[i][j] = 'Q';
+                    solve(n, ans, out, i, j, queens);
+                    out[i][j] = '.';
                     queens--;
                 }
             }
+            col = 0;
         }
     }
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
-        vector<string> board(n, string(n,'.'));
-        solve(n, ans, board, 0, 0);
+        vector<string> out(n, string(n,'.'));
+        solve(n, ans, out, 0, 0, 0);
         return ans;
     }
 };
