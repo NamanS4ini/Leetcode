@@ -51,17 +51,14 @@ class Solution {
             ans.push_back(out);
             return;
         }
-        for(int i = row; i < n; i++){
-            for(int j = col; j < n; j++){
-                if(isSfe(out, i, j)){
+        for(int i = 0; i < n; i++){
+                if(isSfe(out, i, col)){
                     queens++;
-                    out[i][j] = 'Q';
-                    solve(n, ans, out, i, j, queens);
-                    out[i][j] = '.';
+                    out[i][col] = 'Q';
+                    solve(n, ans, out, i, col+1, queens);
+                    out[i][col] = '.';
                     queens--;
                 }
-            }
-            col = 0;
         }
     }
 public:
