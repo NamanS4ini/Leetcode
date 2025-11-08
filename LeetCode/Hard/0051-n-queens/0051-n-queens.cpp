@@ -46,17 +46,17 @@ class Solution {
         return true;
     }
 
-    void solve(int& n, vector<vector<string>>& ans, vector<string>& out, int row, int col, int queens){
+    void solve(int& n, vector<vector<string>>& ans, vector<string>& out, int row, int queens){
         if(queens == n){
             ans.push_back(out);
             return;
         }
-        for(int i = 0; i < n; i++){
-                if(isSfe(out, i, col)){
+        for(int j = 0; j < n; j++){
+                if(isSfe(out, row, j)){
                     queens++;
-                    out[i][col] = 'Q';
-                    solve(n, ans, out, i, col+1, queens);
-                    out[i][col] = '.';
+                    out[row][j] = 'Q';
+                    solve(n, ans, out, row + 1, queens);
+                    out[row][j] = '.';
                     queens--;
                 }
         }
@@ -65,7 +65,7 @@ public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
         vector<string> out(n, string(n,'.'));
-        solve(n, ans, out, 0, 0, 0);
+        solve(n, ans, out, 0, 0);
         return ans;
     }
 };
