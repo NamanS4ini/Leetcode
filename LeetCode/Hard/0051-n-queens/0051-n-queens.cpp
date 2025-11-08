@@ -1,18 +1,18 @@
 class Solution {
-    void updateQueenNA(int& row, int& col, vector<vector<int>>& queenNA, int queen, int val){
-        int n = queenNA.size();
+    bool isSfe(vector<string>& out, int row, int col){
+        int n = out.size();
         for(int i = 0; i < n; i++){
-            if(queenNA[i][col] == 0 || queenNA[i][col] == queen)
-                queenNA[i][col] = val;
-            if(queenNA[row][i] == 0 || queenNA[row][i] == queen)
-                queenNA[row][i] = val;
+            if(out[i][col] == 'Q')
+                return false;
+            if(out[row][i] == 'Q')
+                return false;
         }
         // UP-LEFT
         int i = row - 1;
         int j = col - 1;
         while(i >= 0 && j >= 0){
-            if(queenNA[i][j] == 0 || queenNA[i][j] == queen)
-                queenNA[i][j] = val;
+            if(out[i][j] == 'Q')
+                return false;
             i--;
             j--;
         }
@@ -20,8 +20,8 @@ class Solution {
         i = row - 1;
         j = col + 1;
         while(i >= 0 && j < n){
-            if(queenNA[i][j] == 0 || queenNA[i][j] == queen)
-                queenNA[i][j] = val;
+            if(out[i][j] == 'Q')
+                return false;
             i--;
             j++;
         }
@@ -29,8 +29,8 @@ class Solution {
         i = row + 1;
         j = col + 1;
         while(i < n && j < n){
-            if(queenNA[i][j] == 0 || queenNA[i][j] == queen)
-                queenNA[i][j] = val;
+            if(out[i][j] == 'Q')
+                return false;
             i++;
             j++;
         }
@@ -38,25 +38,25 @@ class Solution {
         i = row + 1;
         j = col - 1;
         while(i < n && j >= 0){
-            if(queenNA[i][j] == 0 || queenNA[i][j] == queen)
-                queenNA[i][j] = val;
+            if(out[i][j] == 'Q')
+                return false;
             i++;
             j--;
         }
+        return true;
     }
-    void solve(int& n, vector<vector<string>>& ans, vector<string>& out, int row, int col, int queens, vector<vector<int>>& queenNA){
+
+    void solve(int& n, vector<vector<string>>& ans, vector<string>& out, int row, int col, int queens){
         if(queens == n){
             ans.push_back(out);
             return;
         }
         for(int i = row; i < n; i++){
             for(int j = col; j < n; j++){
-                if(queenNA[i][j] == 0){
+                if(isSfe(out, i, j)){
                     queens++;
                     out[i][j] = 'Q';
-                    updateQueenNA(i,j, queenNA, queens, queens);
-                    solve(n, ans, out, i, j, queens, queenNA);
-                    updateQueenNA(i,j, queenNA, queens, 0);
+                    solve(n, ans, out, i, j, queens);
                     out[i][j] = '.';
                     queens--;
                 }
@@ -67,12 +67,12 @@ class Solution {
 public:
     vector<vector<string>> solveNQueens(int n) {
         vector<vector<string>> ans;
-        vector<vector<int>> queenNA(n, vector<int>(n,0));
         vector<string> out(n, string(n,'.'));
-        solve(n, ans, out, 0, 0, 0, queenNA);
+        solve(n, ans, out, 0, 0, 0);
         return ans;
     }
 };
 
 
 // Fix duplicates "u"
+// instead of keeping track og each tile for each tile check if it safe to put queen there if theres a queen in the diagonal or L-R, U-D then is not safe  
