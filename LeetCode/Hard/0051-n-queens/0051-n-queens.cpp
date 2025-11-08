@@ -25,6 +25,27 @@ class Solution {
             i--;
             j++;
         }
+
+//      No need to check this as we know no queen can be below  the current queen
+
+        // // DOWN-RIGHT
+        // i = row + 1;
+        // j = col + 1;
+        // while(i < n && j < n){
+        //     if(out[i][j] == 'Q')
+        //         return false;
+        //     i++;
+        //     j++;
+        // }
+        // // DOWN-LEFT
+        // i = row + 1;
+        // j = col - 1;
+        // while(i < n && j >= 0){
+        //     if(out[i][j] == 'Q')
+        //         return false;
+        //     i++;
+        //     j--;
+        // }
         return true;
     }
 
