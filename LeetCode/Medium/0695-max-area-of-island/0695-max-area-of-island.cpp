@@ -1,17 +1,16 @@
 class Solution {
     vector<vector<bool>> visited;
-    void dfs(vector<vector<int>>& grid, int row, int col, int& curr){
+    int dfs(vector<vector<int>>& grid, int row, int col){
         if(row  < 0 || col < 0 || row >= grid.size() || col >= grid[0].size())
-            return;
+            return 0;
         if(grid[row][col] == 0 || visited[row][col])
-            return;
+            return 0;
         visited[row][col] = true;
-        curr++;
-        dfs(grid, row - 1, col, curr);
-        dfs(grid, row + 1, col, curr);
-        dfs(grid, row, col - 1, curr);
-        dfs(grid, row, col + 1, curr);
-        
+        int curr = dfs(grid, row - 1, col);
+        curr += dfs(grid, row + 1, col);
+        curr += dfs(grid, row, col - 1);
+        curr += dfs(grid, row, col + 1);
+        return curr + 1;
     }
 public:
     int maxAreaOfIsland(vector<vector<int>>& grid) {
@@ -20,8 +19,7 @@ public:
         for(int i = 0; i < grid.size(); i++){
             for(int j = 0; j < grid[0].size(); j++){
                 if(!visited[i][j] && grid[i][j] == 1){
-                    int curr = 0;
-                    dfs(grid, i, j, curr);
+                    int curr = dfs(grid, i, j);
                     maxArea = max(curr, maxArea);
                 }
             }
