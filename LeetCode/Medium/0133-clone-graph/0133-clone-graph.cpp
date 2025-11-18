@@ -20,21 +20,18 @@ public:
 */
 
 class Solution {
-    unordered_set<int> visited;
-    vector<Node*> nodes = vector<Node*>(100);
+    vector<Node*> nodes = vector<Node*>(100, NULL);
 public:
     Node* cloneGraph(Node* node) {
         if(!node)
             return NULL;
-        if(visited.find(node->val) != visited.end())
+        if(nodes[node->val - 1])
             return nodes[node->val - 1];
         Node* newNode = new Node(node->val);
         nodes[newNode->val - 1] = newNode;
-        visited.insert(node->val);
         for(Node* n: node-> neighbors){
             Node* neighbor = cloneGraph(n);
             if(neighbor){
-                // neighbor->neighbors.push_back(newNode);
                 newNode->neighbors.push_back(neighbor);
             }
         }
