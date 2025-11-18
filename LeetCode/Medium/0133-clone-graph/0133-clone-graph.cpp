@@ -20,15 +20,15 @@ public:
 */
 
 class Solution {
-    vector<Node*> nodes = vector<Node*>(100, NULL);
+    unordered_map<Node*, Node*> nodes;
 public:
     Node* cloneGraph(Node* node) {
         if(!node)
             return NULL;
-        if(nodes[node->val - 1])
-            return nodes[node->val - 1];
+        if(nodes[node])
+            return nodes[node];
         Node* newNode = new Node(node->val);
-        nodes[newNode->val - 1] = newNode;
+        nodes[node] = newNode;
         for(Node* n: node-> neighbors){
             Node* neighbor = cloneGraph(n);
             if(neighbor){
