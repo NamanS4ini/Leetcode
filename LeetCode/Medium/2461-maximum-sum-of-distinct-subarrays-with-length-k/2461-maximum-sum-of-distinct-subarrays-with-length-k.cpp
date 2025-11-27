@@ -7,30 +7,22 @@ public:
         int right = 0;
         long long currSum = 0;
         while (right < nums.size()) {
-            if (right - left + 1 < k) {
-                if (seen.find(nums[right]) == seen.end()) {
-                    seen.insert(nums[right]);
-                    currSum += nums[right];
-                    right++;
-                } else {
-                    seen.erase(nums[left]);
-                    currSum -= nums[left];
-                    left++;
-                }
+            if (seen.find(nums[right]) != seen.end()) {
+                seen.erase(nums[left]);
+                currSum -= nums[left];
+                left++;
             } else {
-                if (seen.find(nums[right]) != seen.end()) {
-                    while (seen.find(nums[right]) != seen.end()) {
-                        seen.erase(nums[left]);
-                        currSum -= nums[left];
-                        left++;
-                    }
-                } else {
+                if (right - left + 1 == k) {
                     seen.insert(nums[right]);
                     currSum += nums[right];
                     maxSum = max(maxSum, currSum);
                     seen.erase(nums[left]);
                     currSum -= nums[left];
                     left++;
+                    right++;
+                } else{
+                    seen.insert(nums[right]);
+                    currSum += nums[right];
                     right++;
                 }
             }
