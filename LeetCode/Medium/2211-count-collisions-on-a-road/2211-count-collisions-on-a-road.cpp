@@ -8,13 +8,13 @@ public:
                 s.push(c);
             }
             else{
-                if(c == 'S'){
-                    while(s.size() && s.top() == 'R'){
-                        collisions++;
-                        s.pop();
-                    }
-                    s.push('S');
-                }
+                // if(){
+                //     while(s.size() && s.top() == 'R'){
+                //         collisions++;
+                //         s.pop();
+                //     }
+                //     s.push('S');
+                // }
                 if(s.size() && s.top() == 'R' && c == 'L'){
                     s.pop();
                     s.push('S');
@@ -23,8 +23,9 @@ public:
                 else if(s.size() && s.top() == 'S' && c == 'L'){
                     collisions++;
                 }
-                if(s.size() && s.top() == 'S'){
-                    s.pop();
+                if(s.size() && s.top() == 'S' || c == 'S'){
+                    if(s.size() && s.top() == 'S')
+                        s.pop();
                     while(s.size() && s.top() == 'R'){
                         collisions++;
                         s.pop();
