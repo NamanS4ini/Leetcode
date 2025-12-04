@@ -4,10 +4,7 @@ public:
         int collisions = 0;
         stack<char> s;
         for(char c: directions){
-            if(s.empty()){
-                s.push(c);
-            }
-            else if((c == 'L' && s.top() == 'L') || (c == 'R' && s.top() == 'R') || (c == 'R' && s.top() == 'S') || (c == 'R' && s.top() == 'L')){
+            if(s.empty() || (c == 'L' && s.top() == 'L') || (c == 'R' && s.top() == 'R') || (c == 'R' && s.top() == 'S') || (c == 'R' && s.top() == 'L')){
                 s.push(c);
             }
             else{
